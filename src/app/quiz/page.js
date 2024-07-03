@@ -5,7 +5,6 @@ import { redirect } from "next/navigation"
 
 export default async function QuizPage({ searchParams }) {
     const {category,limit,difficulty} = searchParams
-    console.log(category,limit,difficulty)
     const apiResponse = await fetch(`https://the-trivia-api.com/api/questions?categories=${category}&limit=${limit}&type=multiple&difficulty=${difficulty}`)
 
     const apiData = await apiResponse.json()
