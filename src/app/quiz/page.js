@@ -18,7 +18,7 @@ export default async function QuizPage({ searchParams }) {
         <div
             className={`min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600`}
         >
-            <div className="bg-white rounded-md p-6 min-w-[600px] w-full md:w-4/5 lg:w-2/3">
+            <div className="bg-white rounded-md p-6 w-full md:w-4/5 lg:w-2/3">
                <Questions category={category} limit={limit} difficulty={difficulty} apiData={apiData} />
             </div>
         </div>
