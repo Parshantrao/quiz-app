@@ -9,14 +9,18 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "../ui/button"
-import {  useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 
-export default function ShowScore({ showDialog, score, category,limit,setShowScoreDialog}) {
+export default function ShowScore({ showDialog, score, category, limit, setShowScoreDialog }) {
     const router = useRouter()
 
     return (
-        <Dialog open={showDialog} onOpenChange={setShowScoreDialog}>
+        <Dialog open={showDialog} onOpenChange={() => {
+
+            setShowScoreDialog
+            router.push("/")
+        }}>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle
@@ -24,14 +28,14 @@ export default function ShowScore({ showDialog, score, category,limit,setShowSco
                     >
                         {category} Quiz Result
                     </DialogTitle>
-                    <DialogDescription 
-                    className="text-center pt-5 pb-3 text-xl text-indigo-600 font-semibold"
+                    <DialogDescription
+                        className="text-center pt-5 pb-3 text-xl text-indigo-600 font-semibold"
                     >
                         Score: {score}/{limit}
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="flex justify-center flex-row sm:justify-center ">
-                    <Button onClick={()=>router.push("/")} className="bg-indigo-800 hover:bg-indigo-900">Take Quiz Again</Button>
+                    <Button onClick={() => router.push("/")} className="bg-indigo-800 hover:bg-indigo-900">Take Quiz Again</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

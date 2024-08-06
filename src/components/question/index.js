@@ -58,12 +58,14 @@ export default function Questions({ category, limit, difficulty, apiData }) {
             setTimeout(() => {
                 getNextQuestion(questionNumber + 1)
                 setQuestionNumber(questionNumber + 1)
+                setSelectedAnswer("")
             }, 1000);
         }
         else if (questionNumber == limit) {
             setShowScoreDialog(true)
             setShowExitBtn(true)
-        } 
+            setSelectedAnswer("")
+        }
 
 
     }
@@ -123,7 +125,7 @@ export default function Questions({ category, limit, difficulty, apiData }) {
                 </div>
                 <div className="md:text-xl">
                     <CountdownCircleTimer
-                        isPlaying={!selectedAnwser}
+                        isPlaying={showScoreDialog ? !showScoreDialog : !selectedAnwser}
                         duration={15}
                         key={key}
                         colors={['#004777', '#03ad20', '#9fad03', '#ad5303', '#A30000']}
@@ -142,14 +144,8 @@ export default function Questions({ category, limit, difficulty, apiData }) {
                     <div className="w-full py-4 md:py-5 xl:py-7 flex flex-col gap-y-3 md:gap-y-5">
                         {
                             shuffledArray.map((item, idx) => (
-                                // <div
-                                // key={idx}
-                                //     onClick={() => setSelectedAnswer(item)}
-                                //     className={`bordered border-2 rounded text-center p-3 cursor-pointer ${selectedAnwser?item === selectedAnwser ? selectedAnwser === correctAnswer ? "bg-green-700":"bg-red-700":item===correctAnswer?"bg-green-700":"" :""}`}
-                                // >
-                                //     {`${optionsPrefixArray[idx]}. ${item}`}
-                                // </div>
                                 <button
+                                aria-haspopup="true"
                                     key={idx}
                                     className={`option ${selectedAnwser && handleSelectedAnswer(item)} md:text-xl`}
                                     disabled={!!selectedAnwser}
