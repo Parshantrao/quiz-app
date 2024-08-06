@@ -40,33 +40,35 @@ export default function Questions({ category, limit, difficulty, apiData }) {
         setShuffledArray([...shuffledAnwsers])
     }
 
-    function handleSelectedAnswer(answer) {
-        if (selectedAnwser === answer && selectedAnwser === correctAnswer) {
+    function handleSelectedAnswer(item) {
+        
+        if (selectedAnwser === item && selectedAnwser === correctAnswer) {
             return 'correct'
         }
-        else if (selectedAnwser === answer && selectedAnwser !== correctAnswer) {
+        else if (selectedAnwser === item && selectedAnwser !== correctAnswer) {
             return 'incorrect'
         }
-        else if (answer === correctAnswer) return 'correct'
+        else if (item === correctAnswer) return 'correct'
         return ""
     }
 
     function handleOptionClick(item) {
+        console.log(questionNumber , limit,questionNumber < limit)
         setSelectedAnswer(item)
         if (item === correctAnswer) setScore(score + 1)
         if (questionNumber < limit) {
             setTimeout(() => {
                 getNextQuestion(questionNumber + 1)
                 setQuestionNumber(questionNumber + 1)
-                setSelectedAnswer("")
+                
             }, 1000);
         }
         else if (questionNumber == limit) {
             setTimeout(() => {
                 setShowScoreDialog(true)
-            }, 400);
+            }, 500);
             setShowExitBtn(true)
-            setSelectedAnswer("")
+            
         }
 
 
@@ -81,10 +83,10 @@ export default function Questions({ category, limit, difficulty, apiData }) {
             getNextQuestion(questionNumber + 1)
             setQuestionNumber(questionNumber + 1)
         }
-        else if (questionNumber === limit) {
+        else if (questionNumber == limit) {
             setTimeout(() => {
                 setShowScoreDialog(true)
-            }, 400);
+            }, 300);
             setShowExitBtn(true)
         }
     }
