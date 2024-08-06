@@ -62,7 +62,9 @@ export default function Questions({ category, limit, difficulty, apiData }) {
             }, 1000);
         }
         else if (questionNumber == limit) {
-            setShowScoreDialog(true)
+            setTimeout(() => {
+                setShowScoreDialog(true)
+            }, 400);
             setShowExitBtn(true)
             setSelectedAnswer("")
         }
@@ -80,7 +82,9 @@ export default function Questions({ category, limit, difficulty, apiData }) {
             setQuestionNumber(questionNumber + 1)
         }
         else if (questionNumber === limit) {
-            setShowScoreDialog(true)
+            setTimeout(() => {
+                setShowScoreDialog(true)
+            }, 400);
             setShowExitBtn(true)
         }
     }
